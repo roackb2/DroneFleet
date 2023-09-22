@@ -12,9 +12,9 @@ interface Location {
 }
 
 interface LiveMapArgs {
-  currentLocation: Location | null
-  selectedPlace: Location | null
-  searchLngLat: Location | null
+  currentLocation?: Location
+  selectedPlace?: Location
+  searchLngLat?: Location
 }
 
 export function LiveMap({
@@ -22,7 +22,7 @@ export function LiveMap({
   selectedPlace,
   searchLngLat
 }: LiveMapArgs) {
-  const googleMapsApiKey = env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+  const googleMapsApiKey = env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ?? ''
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const { isLoaded } = useLoadScript({
     googleMapsApiKey,

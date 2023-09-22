@@ -29,7 +29,7 @@ function NavBarLinks () {
     href: '/dashboard/drones',
     name: 'Drones'
   }, {
-    href: '/dashboard/mission_plan',
+    href: '/dashboard/mission-plan',
     name: 'Mission Plan'
   }]
   return (
