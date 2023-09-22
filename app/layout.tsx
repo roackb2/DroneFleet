@@ -3,14 +3,14 @@ import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'NextJS Trial',
-  applicationName: 'NextJS Trial',
-  description: 'An trial app to try out features of NextJS',
+  title: 'DroneFleet',
+  applicationName: 'DroneFleet',
+  description: 'Drone fleet ground control station',
   authors: [{
-    name: 'Jay /Fienna Liang',
+    name: 'Jay / Fienna Liang',
     url: 'https://github.com/roackb2'
   }],
-  keywords: ['NextJS', 'React', 'sample app'],
+  keywords: ['DroneFleet', 'Drone', 'UAV', 'GCS', 'Ground control station'],
   themeColor: [
     { media: "(prefers-color-scheme: dark)", color: "#000000" },
     { media: "(prefers-color-scheme: light)", color: "#ffffff" }

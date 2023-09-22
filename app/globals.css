@@ -30,3 +30,7 @@ body {
     )
     rgb(var(--background-start-rgb)); */
 }
+
+.link {
+  @apply text-sky-500 hover:text-sky-600 underline;
+}

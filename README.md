@@ -1,6 +1,6 @@
-# NextJS Trial
+# DroneFleet
 
-A simple project to try out NextJS and its features.
+Open source drone fleet ground control station.
 
 ## Original Documentation
 
