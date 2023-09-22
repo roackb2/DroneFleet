@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+.link {
+  @apply text-sky-500 hover:text-sky-600 underline;
+}
