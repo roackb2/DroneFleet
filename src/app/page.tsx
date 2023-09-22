@@ -1,15 +1,28 @@
+import type { AppType } from 'next/app';
 import { redirect } from 'next/navigation'
+import type { Session } from 'next-auth';
+import { getSession, SessionProvider } from 'next-auth/react';
+import { api } from '@/utils/api'
 
-export default function App() {
+const App: AppType<{ session: Session | null }> = ({
+  Component,
+  pageProps,
+}) => {
   const loggedIn = true
 
   if (loggedIn) redirect('/dashboard')
 
   return (
-    <main className='h-full'>
-      <div className='p-4'>
-        <p>Login</p>
-      </div>
-    </main>
+    <SessionProvider session={pageProps.session}>
+      <Component {...pageProps} />
+    </SessionProvider>
   )
 }
+
+App.getInitialProps = async ({ ctx }) => {
+  return {
+    session: await getSession(ctx),
+  };
+};
+
+export default api.withTRPC(App);

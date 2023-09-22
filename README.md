@@ -2,6 +2,25 @@
 
 Open source drone fleet ground control station.
 
+## Run SITL, the Drone simulator
+
+1. Clone the ArduPilot repo. ArduPilot is a open source flight control firmware.
+
+```bash
+git clone https://github.com/ArduPilot/ardupilot.git
+cd ardupilot
+git submodule init
+git submodule update
+```
+
+2. Run the simulator
+
+```bash
+./Tools/autotest/sim_vehicle.py -v ArduCopter -f quad -D
+```
+
+> Note: This would firstly build the firmware, which might takes a few minutes.
+
 ---
 # Original documentation for T3 app
 

@@ -4,7 +4,8 @@ import {
   GoogleMap,
   useLoadScript
 } from "@react-google-maps/api"
-import { env } from "@/env.mjs";
+import { env } from "@/env.mjs"
+import { api } from '@/utils/api'
 
 interface Location {
   lat: number
@@ -27,6 +28,14 @@ export function LiveMap({
   const { isLoaded } = useLoadScript({
     googleMapsApiKey,
   })
+
+  api.example.hello.useQuery({ text: "from tRPC" })
+
+  // api.example.randomNumber.useSubscription(undefined, {
+  //   onData(n) {
+  //     console.log(n);
+  //   },
+  // });
 
   if (!isLoaded) return <div>Loading....</div>
 
