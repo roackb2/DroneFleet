@@ -4,6 +4,8 @@ import {
   GoogleMap,
   useLoadScript
 } from "@react-google-maps/api"
+// import { env } from "@/env.mjs"
+// import { api } from '@/utils/api'
 
 interface Location {
   lat: number
@@ -11,9 +13,9 @@ interface Location {
 }
 
 interface LiveMapArgs {
-  currentLocation: Location | null
-  selectedPlace: Location | null
-  searchLngLat: Location | null
+  currentLocation?: Location
+  selectedPlace?: Location
+  searchLngLat?: Location
 }
 
 export function LiveMap({
@@ -21,9 +23,19 @@ export function LiveMap({
   selectedPlace,
   searchLngLat
 }: LiveMapArgs) {
+  const googleMapsApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ?? ''
+
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
-  });
+    googleMapsApiKey,
+  })
+
+  // api.example.hello.useQuery({ text: "from tRPC" })
+
+  // api.example.randomNumber.useSubscription(undefined, {
+  //   onData(n) {
+  //     console.log(n);
+  //   },
+  // });
 
   if (!isLoaded) return <div>Loading....</div>
 
@@ -32,8 +44,8 @@ export function LiveMap({
   return (
     <div className="w-full h-full">
       <GoogleMap
-        zoom={currentLocation || selectedPlace ? 18 : 12}
-        center={currentLocation || searchLngLat || center}
+        zoom={currentLocation ?? selectedPlace ? 18 : 12}
+        center={currentLocation ?? searchLngLat ?? center}
         mapContainerClassName="map"
         mapContainerStyle={{ width: "100%", height: "100%", margin: "auto" }}
       >
