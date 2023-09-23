@@ -23,13 +23,13 @@ type NavBarLink = {
 
 function NavBarLinks () {
   const links: NavBarLink[] = [{
-    href: '/dashboard/live',
+    href: '/deprecated/dashboard/live',
     name: 'Live'
   }, {
-    href: '/dashboard/drones',
+    href: '/deprecated/dashboard/drones',
     name: 'Drones'
   }, {
-    href: '/dashboard/mission_plan',
+    href: '/deprecated/dashboard/mission-plan',
     name: 'Mission Plan'
   }]
   return (
