@@ -1,5 +1,5 @@
-import DashboardNavBar from "@/app/dashboard/components/navbar"
-import DashboardFooter from "@/app/dashboard/components/footer"
+import DashboardNavBar from "@/pages/dashboard/components/navbar"
+import DashboardFooter from "@/pages/dashboard/components/footer"
 
 export default function DashboardLayout({
   children,
