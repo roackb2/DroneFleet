@@ -50,7 +50,7 @@ mavproxyClient.on('close', function() {
   console.info('Connection closed')
 })
 
-mavproxyClient.connect(5762, 'localhost', async function() {
+mavproxyClient.connect(5760, 'localhost', async function() {
   console.info('Connected to MAVPRoxy')
   // This command tells the drone to send all parameters
   const request = new mavlink20.messages.param_request_list(255, 255) // system id, component id
