@@ -26,7 +26,7 @@ io.on("connection", (socket) => {
 const mavlinkParser = new MAVLink20Processor(null, 255, 255)
 
 mavlinkParser.on('message', (msg) => {
-  console.log('received mavlink message', msg)
+  console.log('received mavlink message', msg.name)
   io.emit('drone', msg)
 })
 
