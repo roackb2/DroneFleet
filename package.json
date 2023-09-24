@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "server:ws": "tsx watch src/server/wsServer.ts"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.19.2",
@@ -17,10 +18,14 @@
     "eslint": "8.49.0",
     "eslint-config-next": "13.5.2",
     "next": "13.5.2",
+    "next-connect": "^1.0.0-next.4",
     "postcss": "8.4.30",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2",
     "tailwindcss": "3.3.3",
+    "tsx": "^3.12.10",
     "typescript": "5.2.2"
   }
 }
