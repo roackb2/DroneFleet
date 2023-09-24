@@ -1,10 +1,12 @@
 import { LiveMap } from "./live-map"
 import { getDashboardLayout } from "@/pages/dashboard/layout"
 
-export default function Live() {
+function Live() {
   return (
     <LiveMap />
   )
 }
 
 Live.getLayout = getDashboardLayout
+
+export default Live
