@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useState } from "react";
 import { LiveMap } from "./live-map"
 import { getDashboardLayout } from "@/pages/dashboard/layout"
 import { useWebsocket } from "@/utils/hooks/useWebsocket";
@@ -16,7 +16,14 @@ function Live() {
     }
   }
 
-  const sendMessage = useWebsocket([ackHandler])
+  const droneMessageHandler = {
+    type: 'drone',
+    handler: (msg: Object) => {
+      console.log(msg)
+    }
+  }
+
+  const sendMessage = useWebsocket([ackHandler, droneMessageHandler])
 
   const handleMessage = () => {
     sendMessage(currentMessage)
