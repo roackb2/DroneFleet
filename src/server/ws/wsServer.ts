@@ -35,6 +35,12 @@ mavlinkParser.on('HEARTBEAT', msg => {
 })
 
 const mavproxyClient = new net.Socket()
+
+const writeMavlinkMessage = (request) => {
+  const msg = new Buffer(request.pack(MAVLink20Processor));
+  mavproxyClient.write(msg);
+}
+
 mavproxyClient.on('data', function(data) {
   console.info('received MAVPRoxy data, length ', data.length)
   mavlinkParser.parseBuffer(data)
@@ -46,6 +52,9 @@ mavproxyClient.on('close', function() {
 
 mavproxyClient.connect(5762, 'localhost', async function() {
   console.info('Connected to MAVPRoxy')
+  // This command tells the drone to send all parameters
+  const request = new mavlink20.messages.param_request_list(255, 255) // system id, component id
+  writeMavlinkMessage(request)
 })
 
 // start the websocket server
