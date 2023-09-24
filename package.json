@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "server:ws": "tsx watch src/server/wsServer.ts"
+    "server:ws": "tsx watch src/server/ws/wsServer.ts"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.19.2",

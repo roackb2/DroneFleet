@@ -35,13 +35,13 @@ function Live() {
 
   const sendMessage = () => {
     // Send the message to the server
-    socket?.emit('message', currentMessage);
+    socket?.emit('client:message', currentMessage);
     // Clear the currentMessage state
     setCurrentMessage('');
 };
 
   return (
-    <div>
+    <div className="h-full">
       {/* Display the messages */}
       {messages.map((message, index) => (
           <p key={index}>{message}</p>

@@ -2,6 +2,8 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import type { ServerOptions } from "socket.io";
 
+import registerClientHandler from "./handlers/client";
+
 const PORT = 3001
 const httpServer = createServer();
 const io = new Server(httpServer, {
@@ -12,14 +14,9 @@ const io = new Server(httpServer, {
 } as Partial<ServerOptions>);
 
 io.on("connection", (socket) => {
-  console.log(`new connection ${socket.id}`)
+  console.log(`New connection ${socket.id}`)
 
-  socket.on('message', msg => {
-    console.log(`received message ${msg}`)
-
-    const result = `received message ${msg}`
-    socket.emit('ack', result)
-  })
+  registerClientHandler(io, socket)
 });
 
 console.log(`Websocket server listening on ${PORT}`)
