@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { LiveMap } from "./live-map"
 import { getDashboardLayout } from "@/pages/dashboard/layout"
-import io from 'socket.io-client';
-import type { Socket } from 'socket.io-client';
+import { useWebsocket } from "@/utils/hooks/useWebsocket";
 
 function Live() {
   // State to store the messages
@@ -10,35 +9,20 @@ function Live() {
   // State to store the current message
   const [currentMessage, setCurrentMessage] = useState('');
 
-  const [socket, setSocket] = useState<Socket | null>(null)
+  const ackHandler = {
+    type: 'ack',
+    handler: (msg: string) => {
+      console.log(msg)
+    }
+  }
 
-  useEffect(() => {
-    // Create a socket connection
-    const ws = io('http://localhost:3001');
+  const sendMessage = useWebsocket([ackHandler])
 
-    // Listen for incoming messages
-    ws.on('message', (message) => {
-       console.log(message)
-    });
+  const handleMessage = () => {
+    sendMessage(currentMessage)
 
-    ws.on('ack', (message) => {
-      console.log(`received ack with ${message}`)
-    })
-
-    setSocket(ws)
-
-    // Clean up the socket connection on unmount
-    return () => {
-      ws.disconnect();
-    };
-  }, []);
-
-  const sendMessage = () => {
-    // Send the message to the server
-    socket?.emit('client:message', currentMessage);
-    // Clear the currentMessage state
     setCurrentMessage('');
-};
+  };
 
   return (
     <div className="h-full">
@@ -55,7 +39,7 @@ function Live() {
       />
 
       {/* Button to submit the new message */}
-      <button onClick={sendMessage}>Send</button>
+      <button onClick={handleMessage}>Send</button>
       <LiveMap />
     </div>
   )
