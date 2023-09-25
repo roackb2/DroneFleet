@@ -50,6 +50,10 @@ mavproxyClient.on('close', function() {
   console.info('Connection closed')
 })
 
+mavproxyClient.on('error', function(err) {
+  console.error('Connection error', err)
+})
+
 mavproxyClient.connect(5760, 'localhost', async function() {
   console.info('Connected to MAVPRoxy')
   // This command tells the drone to send all parameters
